@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# a detailed overview on sbatch options can be found at
+#   https://slurm.schedmd.com/sbatch.html
+
+# configure the job name and filename for stdout/stderr
+#SBATCH --job-name=MAIN_fmincon_log
+#SBATCH --output=testout.out
+
+# configure email notifications
+#SBATCH --mail-type=NONE				# one of NONE, BEGIN, END, FAIL, REQUEUE, ALL, ...
+
+# change to the scratch directory
+#SBATCH --chdir /work/xu2/script_fmincon	# change this to your own scratch directory; ensure that required files (e.g. ex_matlab.m) reside in this directory
+
+# set the resource requirements of the job
+#SBATCH --time=03-05:00:00			# the time limit for the job
+#SBATCH --nodes=1				# usually 1, unless you use MPI or spawn many independent processes
+#SBATCH --ntasks=1				# usually 1, unless multiple srun invocations
+#SBATCH --cpus-per-task=12      			# number of cpu cores available; ensure that this fits to the number of threads your program utilizes
+#SBATCH --mem=16G      				# memory available during the job (use units of "M" or "G" for MB and GB respectively)
+
+# load the matlab module
+module load math/MATLAB
+
+# run the matlab code
+srun matlab -nodisplay -r "MAIN_fmincon_log"		# run the matlab function "ex_matlab"; so you have to ensure the file 'ex_matlab.m' containing the function "ex_matlab()" is in the current directory (that you set with --chdir); remove '-singleCompThread' if your program uses multiple threads/parpool
+
+# alternatively you may input a script to matlab, like so:
+# srun matlab -nodisplay < matlab_script.txt

@@ -1,0 +1,14 @@
+/var/spool/slurmd/job06133/slurm_script: line 7: SBATCH: command not found
+/var/spool/slurmd/job06133/slurm_script: line 8: SBATCH: command not found
+/var/spool/slurmd/job06133/slurm_script: line 14: SBATCH: command not found
+Opening log file:  /home/xu2/java.log.9666
+
+                            < M A T L A B (R) >
+                  Copyright 1984-2021 The MathWorks, Inc.
+             R2021a Update 3 (9.10.0.1684407) 64-bit (glnxa64)
+                                May 27, 2021
+
+ 
+To get started, type doc.
+For product information, visit www.mathworks.com.
+ 
